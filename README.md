@@ -1,3 +1,17 @@
+### Warm if AV bitches about release, build the release yourself.
+
+# Build
+
+```sh
+pip install pyinstaller
+```
+cd into clone
+
+```sh
+pyinstaller .\app.spec
+```
+
+
 # Installation
 
 ![image](https://github.com/addievo/RCMGUI/assets/38064122/7e67768d-2814-437f-b5ea-df9df2c5f507)
