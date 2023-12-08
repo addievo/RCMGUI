@@ -1,4 +1,4 @@
-### Warm if AV bitches about release, build the release yourself.
+### Warn: if AV bitches about release, build the release yourself.
 
 # Build
 
