@@ -43,6 +43,27 @@ gradient_image = ImageTk.PhotoImage(gradient)
 background_label = tk.Label(root, image=gradient_image)
 background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
+# Draggable area setup
+def start_move(event):
+    root.x = event.x
+    root.y = event.y
+
+def on_move(event):
+    deltax = event.x - root.x
+    deltay = event.y - root.y
+    x = root.winfo_x() + deltax
+    y = root.winfo_y() + deltay
+    root.geometry(f"+{x}+{y}")
+
+
+
+movable_area = tk.Label(root, bg='#654ea3')  # Set the background color to match your design
+movable_area.place(x=0, y=0, width=200, height=20)  # Adjust the height as needed
+
+movable_area.bind("<ButtonPress-1>", start_move)
+movable_area.bind("<B1-Motion>", on_move)
+
+
 # Create a minimalist close button
 close_button = tk.Label(root, text="x", font=("Arial", 12, "bold"), fg='black', bg='#654ea3')  # Match the gradient start color
 close_button.place(x=195, y=1, width=5, height=5)  # Adjust width and height as needed
