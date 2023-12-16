@@ -26,13 +26,13 @@ pyinstaller .\app.spec
 Paste contents of RCS.txt in the script box. 
 Ctrl+S to save.
 
-Launch RCMGUI through .exe or through python (python.app after installing dependencies)
+Launch RCMGUI through .exe or through python (`python .\app.py` after CDing into the correct folder and after installing dependencies)
 
 # Activation
 
-L1 RCS - Caps Lock - Ideally Mouse 4
-L2 RCS - Scroll Lock - Ideally Mouse 5
-L3 RCS - Num Lock - Ideally Middle Mouse 
+- L1 RCS - Caps Lock (Scroll lock MUST be deactivated)- Ideally Mouse 4
+- L2 RCS - Scroll Lock (Caps Lock MUST be deactivated) - Ideally Mouse 5
+- L3 RCS - Caps Lock + Scroll Lock
 
 # RCMGUI
 
@@ -54,6 +54,6 @@ Tested with Logitech GHUB 2021.3.9205
 
 > Skipping requirements.txt as only 1 required dependency.
 
-```py
+```sh
 pip install Image
 ```
