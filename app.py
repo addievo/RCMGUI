@@ -5,17 +5,24 @@ from PIL import Image, ImageTk
 
 def get_key_status():
     hllDll = windll.LoadLibrary("User32.dll")
-    VK_CAPITAL, VK_NUMLOCK, VK_SCROLL = 0x14, 0x90, 0x91
-    return (hllDll.GetKeyState(VK_CAPITAL) & 1) == 1, (hllDll.GetKeyState(VK_NUMLOCK) & 1) == 1, (                hllDll.GetKeyState(VK_SCROLL) & 1) == 1
+    VK_CAPITAL, VK_SCROLL = 0x14, 0x91
+    return (hllDll.GetKeyState(VK_CAPITAL) & 1) == 1, (hllDll.GetKeyState(VK_SCROLL) & 1) == 1
 
 
 def update_status():
-    caps_lock, num_lock, scroll_lock = get_key_status()
-    update_indicator(caps_lock_indicator, caps_lock)
-    update_indicator(num_lock_indicator, scroll_lock)
-    update_indicator(scroll_lock_indicator, num_lock)
-    root.after(1000, update_status)
+    caps_lock, num_lock = get_key_status()
+    highest_recoil = caps_lock and num_lock
 
+    # Updating the "Lowest Recoil" indicator
+    update_indicator(caps_lock_indicator, caps_lock and not highest_recoil)
+
+    # Updating the "Medium Recoil" indicator
+    update_indicator(num_lock_indicator, num_lock and not highest_recoil)
+
+    # Updating the "Highest Recoil" indicator
+    update_indicator(scroll_lock_indicator, highest_recoil)
+
+    root.after(1000, update_status)
 
 def update_indicator(indicator, status):
     color = "#00FF00" if status else "#FF0000"

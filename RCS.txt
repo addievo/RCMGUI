@@ -1,34 +1,34 @@
 EnablePrimaryMouseButtonEvents(true);
 
-function OnEvent(event,arg)
-    if IsKeyLockOn("numlock") then  -- Highest priority
+function OnEvent(event, arg)
+    if IsKeyLockOn("capslock") and IsKeyLockOn("scrolllock") then  -- Highest priority for combined capslock and scrolllock
         if IsMouseButtonPressed(3) then
             repeat
                 if IsMouseButtonPressed(1) then
                     repeat
-                        MoveMouseRelative(0,12) -- Movement for numlock
+                        MoveMouseRelative(0, 12) -- Movement for combined capslock and scrolllock
                         Sleep(7)
                     until not IsMouseButtonPressed(1)
                 end
             until not IsMouseButtonPressed(3)
         end
-    elseif IsKeyLockOn("scrolllock") then  -- Medium priority
+    elseif IsKeyLockOn("scrolllock") then  -- Medium priority for scrolllock
         if IsMouseButtonPressed(3) then
             repeat
                 if IsMouseButtonPressed(1) then
                     repeat
-                        MoveMouseRelative(0,9) -- Movement for scrolllock
+                        MoveMouseRelative(0, 9) -- Movement for scrolllock
                         Sleep(7)
                     until not IsMouseButtonPressed(1)
                 end
             until not IsMouseButtonPressed(3)
         end
-    elseif IsKeyLockOn("capslock") then  -- Lowest priority
+    elseif IsKeyLockOn("capslock") then  -- Lowest priority for capslock
         if IsMouseButtonPressed(3) then
             repeat
                 if IsMouseButtonPressed(1) then
                     repeat
-                        MoveMouseRelative(0,5) -- Movement for capslock
+                        MoveMouseRelative(0, 5) -- Movement for capslock
                         Sleep(7)
                     until not IsMouseButtonPressed(1)
                 end
