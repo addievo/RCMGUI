@@ -6,7 +6,9 @@ from PIL import Image, ImageTk
 def get_key_status():
     hllDll = windll.LoadLibrary("User32.dll")
     VK_CAPITAL, VK_SCROLL = 0x14, 0x91
-    return (hllDll.GetKeyState(VK_CAPITAL) & 1) == 1, (hllDll.GetKeyState(VK_SCROLL) & 1) == 1
+    return (hllDll.GetKeyState(VK_CAPITAL) & 1) == 1, (
+            hllDll.GetKeyState(VK_SCROLL) & 1
+    ) == 1
 
 
 def update_status():
@@ -24,16 +26,19 @@ def update_status():
 
     root.after(1000, update_status)
 
+
 def update_indicator(indicator, status):
     color = "#00FF00" if status else "#FF0000"
     indicator.config(bg=color)
 
+
 def close_app():
     root.destroy()
 
+
 root = tk.Tk()
 root.overrideredirect(True)  # Turn off the default title bar
-root.geometry('200x200+200+200')  # New geometry for the window
+root.geometry("200x200+200+200")  # New geometry for the window
 root.title("RCM")
 root.resizable(False, False)
 
@@ -55,6 +60,7 @@ def start_move(event):
     root.x = event.x
     root.y = event.y
 
+
 def on_move(event):
     deltax = event.x - root.x
     deltay = event.y - root.y
@@ -63,8 +69,9 @@ def on_move(event):
     root.geometry(f"+{x}+{y}")
 
 
-
-movable_area = tk.Label(root, bg='#654ea3')  # Set the background color to match your design
+movable_area = tk.Label(
+    root, bg="#654ea3"
+)  # Set the background color to match your design
 movable_area.place(x=0, y=0, width=200, height=20)  # Adjust the height as needed
 
 movable_area.bind("<ButtonPress-1>", start_move)
@@ -72,26 +79,36 @@ movable_area.bind("<B1-Motion>", on_move)
 
 
 # Create a minimalist close button
-close_button = tk.Label(root, text="x", font=("Arial", 12, "bold"), fg='black', bg='#654ea3')  # Match the gradient start color
+close_button = tk.Label(
+    root, text="x", font=("Arial", 12, "bold"), fg="black", bg="#654ea3"
+)  # Match the gradient start color
 close_button.place(x=195, y=1, width=5, height=5)  # Adjust width and height as needed
 
 close_button.bind("<Button-1>", lambda e: close_app())
 
 # Status indicators
-caps_lock_indicator = tk.Canvas(root, width=20, height=20, bg='red', highlightthickness=0)
+caps_lock_indicator = tk.Canvas(
+    root, width=20, height=20, bg="red", highlightthickness=0
+)
 caps_lock_indicator.place(x=155, y=60)
 
-num_lock_indicator = tk.Canvas(root, width=20, height=20, bg='red', highlightthickness=0)
+num_lock_indicator = tk.Canvas(
+    root, width=20, height=20, bg="red", highlightthickness=0
+)
 num_lock_indicator.place(x=155, y=110)
 
-scroll_lock_indicator = tk.Canvas(root, width=20, height=20, bg='red', highlightthickness=0)
+scroll_lock_indicator = tk.Canvas(
+    root, width=20, height=20, bg="red", highlightthickness=0
+)
 scroll_lock_indicator.place(x=155, y=160)
 
 # Text labels
 font_settings = ("Arial", 12)
-tk.Label(root, text="Lowest Recoil:", font=font_settings, bg='white').place(x=25, y=57)
-tk.Label(root, text="Medium Recoil:", font=font_settings, bg='white').place(x=25, y=107)
-tk.Label(root, text="Highest Recoil:", font=font_settings, bg='white').place(x=25, y=157)
+tk.Label(root, text="Lowest Recoil:", font=font_settings, bg="white").place(x=25, y=57)
+tk.Label(root, text="Medium Recoil:", font=font_settings, bg="white").place(x=25, y=107)
+tk.Label(root, text="Highest Recoil:", font=font_settings, bg="white").place(
+    x=25, y=157
+)
 
 update_status()
 
