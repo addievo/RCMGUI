@@ -27,7 +27,9 @@ Paste contents of RCS.txt in the script box.
 Ctrl+S to save.
 
 Launch RCMGUI through .exe or through python (`python .\app.py` after CDing into the correct folder and after installing dependencies)
-
+```shell
+python .\app.py
+```
 # Activation
 
 - L1 RCS - Caps Lock (Scroll lock MUST be deactivated)- Ideally Mouse 4
